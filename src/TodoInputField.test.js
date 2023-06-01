@@ -1,16 +1,20 @@
-import { render, screen } from "@testing-library/react"
-import TodoInputField from './TodoInputField'
+import { render, screen } from "@testing-library/react";
+import TodoInputField from "./TodoInputField";
 
 describe("The Todo Input Field", () => {
     test("renders the input field and add button", () => {
         render(<TodoInputField />);
 
-        const inputElement = screen.getByPlaceholderText(/Add a new task here.../i); 
-        const buttonElement = screen.getByRole('button', { name: /Add to list/i }); 
+        const inputElement = screen.getByPlaceholderText(
+            /Add a new task here.../i
+        );
+        const buttonElement = screen.getByRole("button", {
+            name: /Add to list/i,
+        });
 
-        screen.debug()
+        screen.debug();
 
-        expect(inputElement).toBeInTheDocument()
-        expect(buttonElement).toBeInTheDocument()
-    })
-})
+        expect(inputElement).toBeInTheDocument();
+        expect(buttonElement).toBeInTheDocument();
+    });
+});
