@@ -30,7 +30,7 @@ describe("The Todo List Component", () => {
         expect(listItemElements.length).toBe(3);
     });
 
-    test("removes a task from the todo list", () => {
+    test("removes the first task from the todo list", () => {
         render(<TodoList />);
 
         const firstTaskElement = screen.getByText("Buy more coffee beans").parentElement;
@@ -50,4 +50,26 @@ describe("The Todo List Component", () => {
             screen.queryByText("Buy more coffee beans")
         ).not.toBeInTheDocument();
     });
+
+    test("removes the second task from the todo list", () => {
+        render(<TodoList />);
+
+        const secondTaskElement = screen.getByText("Empty compost bin").parentElement;
+        const deleteButtonElement = within(secondTaskElement).getByRole(
+            "button",
+            {
+                name: /Delete/i,
+            }
+        );
+
+        fireEvent.click(deleteButtonElement);
+
+        const listItemElements = screen.getAllByRole("listitem");
+        expect(listItemElements.length).toBe(1);
+
+        expect(
+            screen.queryByText("Empty compost bin")
+        ).not.toBeInTheDocument();
+    });
+    
 });
