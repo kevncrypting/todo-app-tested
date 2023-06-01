@@ -12,6 +12,10 @@ const TodoList = () => {
         setTasks(prevTasks => [...prevTasks, task])
     }
 
+    const handleDeleteTask = (task) => {
+        setTasks(prevTasks => prevTasks.filter(taskItem => taskItem !== task))
+    }
+
     return (
         <>
             <TodoInputField onAddTask={handleAddTask} />
@@ -20,7 +24,7 @@ const TodoList = () => {
                 {tasks.map((task, index) => {
                     return (
                         <li key={index}>
-                            <TodoItem task={task} />
+                            <TodoItem task={task} onDeleteTask={handleDeleteTask}/>
                         </li>
                     );
                 })}

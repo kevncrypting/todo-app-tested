@@ -29,4 +29,25 @@ describe("The Todo List Component", () => {
         const listItemElements = screen.getAllByRole("listitem");
         expect(listItemElements.length).toBe(3);
     });
+
+    test("removes a task from the todo list", () => {
+        render(<TodoList />);
+
+        const firstTaskElement = screen.getByText("Buy more coffee beans").parentElement;
+        const deleteButtonElement = within(firstTaskElement).getByRole(
+            "button",
+            {
+                name: /Delete/i,
+            }
+        );
+
+        fireEvent.click(deleteButtonElement);
+
+        const listItemElements = screen.getAllByRole("listitem");
+        expect(listItemElements.length).toBe(1);
+
+        expect(
+            screen.queryByText("Buy more coffee beans")
+        ).not.toBeInTheDocument();
+    });
 });

@@ -1,10 +1,14 @@
-const TodoItem = ({ task }) => {
-  return (
-    <article>
-        <span>{ task }</span>
-        <button>Delete</button>
-    </article>
-  )
-}
+const TodoItem = ({ task, onDeleteTask }) => {
+    const handleDeleteTask = () => {
+        onDeleteTask(task);
+    };
 
-export default TodoItem
+    return (
+        <article>
+            <span>{task}</span>
+            <button onClick={handleDeleteTask}>Delete</button>
+        </article>
+    );
+};
+
+export default TodoItem;
