@@ -8,10 +8,14 @@ const TodoList = () => {
         "Empty compost bin",
     ]);
 
+    const handleAddTask = (task) => {
+        setTasks(prevTasks => [...prevTasks, task])
+    }
+
     return (
         <>
-            <TodoInputField />
-            
+            <TodoInputField onAddTask={handleAddTask} />
+
             <ul>
                 {tasks.map((task, index) => {
                     return (
