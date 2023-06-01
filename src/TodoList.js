@@ -13,7 +13,7 @@ const TodoList = () => {
     }
 
     const handleDeleteTask = (task) => {
-        setTasks(prevTasks => prevTasks.filter(taskItem => taskItem !== task))
+        setTasks(prevTasks => prevTasks.filter(prevTask => prevTask !== task))
     }
 
     return (
